@@ -1,6 +1,8 @@
 # Wealthwallet
 Wealthwallet is a smart contract built on Ethereum powered by Uniswap that allows you to make unlimited portfolios easily
 
+[Follow us on Twitter](https://twitter.com/getwealthwallet)
+
 ## Features
 + Wealthwallet allows you to make custom portfolios with any Uniswap asset.
 + You can choose the ratio in which the assets make up your portfolio.
