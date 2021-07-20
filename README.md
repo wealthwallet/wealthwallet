@@ -1,2 +1,2 @@
 # wealthwallet
-Wealthwallet is a smart contract built on Ethereum that is designed to make building wealth easy
+Wealthwallet is a smart contract built on Ethereum that allows you to make unlimited portfolios easily
