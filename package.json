@@ -1,0 +1,22 @@
+{
+  "name": "@wealthwallet",
+  "version": "1.0.0",
+  "description": "Wealthwallet is a smart contract built on Ethereum that allows you to build unlimited portfolios easily",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wealthwallet/wealthwallet.git"
+  },
+  "keywords": [
+    "wealth"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wealthwallet/wealthwallet/issues"
+  },
+  "homepage": "https://github.com/wealthwallet/wealthwallet#readme"
+}
