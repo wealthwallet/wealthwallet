@@ -10,4 +10,17 @@ Wealthwallet is a smart contract built on Ethereum powered by Uniswap that allow
 + You can rebalance your portfolio(redistribute your assets to their respective ratios) at anytime.
 + It is completely free to use, there are no fees associated with Wealthwallet.
 
-## Getting Started
+## Installation
+To get started, install the wealthwallet node package to have access to the contracts
+```
+$ npm i @wealthwallet/core
+```
+
+## Contract Address
+Wealthwallet smart contract is deployed on mainnet and ropsten.
+|**Network** | **Address**
+|------------|------------
+|MainNet     | [](https://etherscan.io/address/)
+|Ropsten     | [0x24b2e6065fD465501f4b52f13B8B0BcA544B22fC](https://ropsten.etherscan.io/address/0x24b2e6065fD465501f4b52f13B8B0BcA544B22fC)
+
+
