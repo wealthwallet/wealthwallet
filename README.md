@@ -11,6 +11,16 @@ Wealthwallet smart contract is deployed on mainnet and ropsten.
 |MainNet     | [](https://etherscan.io/address/)
 |Ropsten     | [0x24b2e6065fD465501f4b52f13B8B0BcA544B22fC](https://ropsten.etherscan.io/address/0x24b2e6065fD465501f4b52f13B8B0BcA544B22fC)
 
+## Table of Contents
+1. [Features](#Features)
+2. Getting Started
+3. WealthWalletFactory
+4. WealthWallet
+5. Portfolio
+6. Fund
+7. Rebalance
+8. Withdraw
+
 ## Features
 + Wealthwallet allows you to make custom portfolios with any Uniswap asset.
 + You can choose the ratio in which the assets make up your portfolio.
@@ -105,7 +115,7 @@ Portfolios are where you choose the assets you want to invest in and their respe
 const portfolio = await Portfolio.at(portfolioAddress);
 
 //define configuration settings
-const slippage = 5000; //basis points out of 10,000 (0.5% slippage)
+const slippage = 50; //basis points out of 10,000 (0.5% slippage)
 const swapTimeLimit = 600; //time limit in seconds (10 minutes)
 const uniswapRouterAddress = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D";
 const wethAddress = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2";
