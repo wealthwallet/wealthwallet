@@ -13,13 +13,13 @@ Wealthwallet smart contract is deployed on mainnet and ropsten.
 
 ## Table of Contents
 1. [Features](#Features)
-2. Getting Started
-3. WealthWalletFactory
-4. WealthWallet
-5. Portfolio
-6. Fund
-7. Rebalance
-8. Withdraw
+2. [Getting Started](#Getting-Started)
+3. [WealthWalletFactory](#WealthWalletFactory)
+4. [WealthWallet](#WealthWallet-1)
+5. [Portfolio](#Portfolio)
+6. [Fund](#Fund)
+7. [Rebalance](#Rebalance)
+8. [Withdraw](#Withdraw)
 
 ## Features
 + Wealthwallet allows you to make custom portfolios with any Uniswap asset.
