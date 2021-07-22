@@ -26,21 +26,22 @@ $ npm i @wealthwallet/core
 
 <br>
 
-This tutorial uses [Truffle](https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript) for simplicity and assumes you have your ethereum wallet connected to interact with the smart contract.
+This tutorial uses [Truffle](https://www.trufflesuite.com/docs/truffle/overview) for simplicity and assumes you have your ethereum wallet connected to interact with the smart contract.
 
 <br>
 
 First, we import the smart contracts from the wealthwallet node package.
-```
+```javascript
 const WealthWalletFactory = artifacts.require("@wealthwallet/core/contracts/WealthWalletFactory.sol");
 const WealthWallet = artifacts.require("@wealthwallet/core/contracts/WealthWallet.sol");
 const Portfolio = artifacts.require("@wealthwallet/core/contracts/Portfolio.sol");
 ```
 
 ## WealthWalletFactory
-The WealthWalletFactory is used to create and get the address of wealthwallets.
+The WealthWalletFactory is used to create wealthwallets. It also keeps track of which ethereum wallets created a wealthwallet.
 
-```
+```javascript
+//define factory address
 const factoryAddress = "0x24b2e6065fD465501f4b52f13B8B0BcA544B22fC";
 
 //create wealthwalletfactory instance
@@ -53,10 +54,14 @@ await wealthWalletFactory.createWealthWallet();
 const wealthWalletAddress = await wealthWalletFactory.getWealthWallet();
 ```
 
-We create an instance of WealthWalletFactory at the address it's deployed at. 
+First, we create an instance of WealthWalletFactory at the address it's deployed on. In this case, we'll be using the mainnet address.
+
+Next, we create a wealthwallet using the factory's `createWealthWallet()` method. Whenever you create a wealthwallet, only the ethereum wallet you used to create it will have access to it.
+
+Finally, we retrieve the address of the wealthwallet we just created using `getWealthWallet()` method. This method uses the ethereum wallet address calling it and returns the address of the wealthwallet create by the ethereum wallet.
 
 ## WealthWallet
-```
+```javascript
 //create wealthwallet instance
 const wealthWallet = await WealthWallet.at(wealthWalletAddress);
 
@@ -74,7 +79,7 @@ const portfolioAddress = await wealthWallet.getPortfolio(portfolioIndex);
 ```
 
 ## Portfolio
-```
+```javascript
 //create portfolio instance
 const portfolio = await Portfolio.at(portfolioAddress);
 
@@ -111,7 +116,7 @@ for (let i=0; i<assets.length; i++){
 ```
 
 ## Fund
-```
+```javascript
 console.log("BEFORE FUNDING\n");
 
 //get total assets
@@ -153,7 +158,7 @@ for (let i=0; i<totalAssets; i++) {
 }
 ```
 ## Rebalance
-```
+```javascript
 console.log("\n\nBEFORE REBALANCE\n");
 
 //loop through all assets 
@@ -197,7 +202,7 @@ for (let i=0; i<totalAssets; i++) {
 ```
 
 ## Withdraw
-```
+```javascript
 console.log("\n\nBEFORE WITHDRAWAL\n");
 
 //loop through all assets 
