@@ -251,6 +251,7 @@ Next, we fund the portfolio by calling the `deposit()` method and sending the am
 Finally, we loop through the assets again to see how they've change. As you can see, 50% of the funds sent was swapped for WBTC and the other 50% was swapped for WETH. 
 
 ## Rebalance
+Let's say you want to modify your portfolio's structure or are simply overdue for rebalancing, wealthwallet makes rebalancing simple.
 ```javascript
 console.log("\n\nBEFORE REBALANCE\n");
 
@@ -293,6 +294,47 @@ for (let i=0; i<totalAssets; i++) {
     console.log("Amount: ", asset[4].toString());
 }
 ```
+### Console
+```
+BEFORE REBALANCE
+
+--------------- Asset Details ----------------
+Name:  Wrapped BTC
+Symbol:  WBTC
+Address:  0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599
+Ratio:  5000
+Amount:  3056095
+--------------- Asset Details ----------------
+Name:  Wrapped Ether
+Symbol:  WETH
+Address:  0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
+Ratio:  5000
+Amount:  500000000000000000
+
+
+AFTER REBALANCE
+
+--------------- Asset Details ----------------
+Name:  Wrapped BTC
+Symbol:  WBTC
+Address:  0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599
+Ratio:  2500
+Amount:  1523482
+--------------- Asset Details ----------------
+Name:  Wrapped Ether
+Symbol:  WETH
+Address:  0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
+Ratio:  7500
+Amount:  747753291186141747
+```
+
+We loop through the assets and get their information using `getAssetDetails()`.
+
+Then, we change the asset's ratio using the `changeAssetRatio()` method. In this example, we're changing WBTC(0) to 25% and WETH(1) to 75% of the portfolio.
+
+Next, we rebalancing the portfolio using the `rebalance()` method. This method liquifies all the assets to ETH and then reswaps them at their respective ratios. 
+
+Finally, we loop through the assets to get their info and see how they've changed. As you can see, the asset's ratios were updated and using `rebalance()`, their amount was changed to match that ratio. It works like magic!
 
 ## Withdraw
 ```javascript
@@ -334,3 +376,43 @@ for (let i=0; i<totalAssets; i++) {
     console.log("Amount: ", asset[4].toString());
 }
 ```
+
+### Console
+```
+BEFORE WITHDRAWAL
+
+--------------- Asset Details ----------------
+Name:  Wrapped BTC
+Symbol:  WBTC
+Address:  0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599
+Ratio:  2500
+Amount:  1523482
+--------------- Asset Details ----------------
+Name:  Wrapped Ether
+Symbol:  WETH
+Address:  0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
+Ratio:  7500
+Amount:  747753291186141747
+
+
+AFTER WITHDRAWAL
+
+--------------- Asset Details ----------------
+Name:  Wrapped BTC
+Symbol:  WBTC
+Address:  0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599
+Ratio:  2500
+Amount:  0
+--------------- Asset Details ----------------
+Name:  Wrapped Ether
+Symbol:  WETH
+Address:  0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
+Ratio:  7500
+Amount:  0
+```
+
+We get the asset's details using `getAssetDetails()`.
+
+Then, we withdraw all of our fund back to our ethereum wallet using the `withdrawAll()` method. You also have the option of using `withdraw(withdrawAmount)` to withdraw a specific amount. These methods liquify your assets into ETH, then withdraws the amount requested to your wallet, then reswaps the remaining funds, if any, back to the portfolio's chosen assets.
+
+We get the asset's details and notice that all of the tokens were successfully withdrawn from the portfolio back to your ethereum wallet.
