@@ -19,14 +19,19 @@ Wealthwallet smart contract is deployed on mainnet and ropsten.
 + It is completely free to use, there are no fees associated with Wealthwallet.
 
 ## Getting Started
-To get started, install the wealthwallet node package to have access to the contracts
+This tutorial uses [Truffle](https://www.trufflesuite.com/docs/truffle/overview) for simplicity and assumes you have your ethereum wallet connected to interact with the smart contract.
+
+To install Truffle:
 ```
-$ npm i @wealthwallet/core
+$ npm install -g truffle
 ```
 
 <br>
 
-This tutorial uses [Truffle](https://www.trufflesuite.com/docs/truffle/overview) for simplicity and assumes you have your ethereum wallet connected to interact with the smart contract.
+To get started, install the wealthwallet node package to have access to the contracts
+```
+$ npm i @wealthwallet/core
+```
 
 <br>
 
@@ -42,7 +47,7 @@ The WealthWalletFactory is used to create wealthwallets. It also keeps track of 
 
 ```javascript
 //define factory address
-const factoryAddress = "0x24b2e6065fD465501f4b52f13B8B0BcA544B22fC";
+const factoryAddress = "0x24b2e6065fD465501f4b52f13B8B0BcA544B22fC"; // mainnet address
 
 //create wealthwalletfactory instance
 const wealthWalletFactory = await WealthWalletFactory.at(factoryAddress);
@@ -54,18 +59,22 @@ await wealthWalletFactory.createWealthWallet();
 const wealthWalletAddress = await wealthWalletFactory.getWealthWallet();
 ```
 
-First, we create an instance of WealthWalletFactory at the address it's deployed on. In this case, we'll be using the mainnet address.
+First, we create an instance of WealthWalletFactory at the address it's deployed on.
 
 Next, we create a wealthwallet using the factory's `createWealthWallet()` method. Whenever you create a wealthwallet, only the ethereum wallet you used to create it will have access to it.
 
-Finally, we retrieve the address of the wealthwallet we just created using `getWealthWallet()` method. This method uses the ethereum wallet address calling it and returns the address of the wealthwallet create by the ethereum wallet.
+Finally, we retrieve the address of the wealthwallet we just created using `getWealthWallet()` method.
+
+Congratulations, you have just create a wealthwallet using WealthWalletFactory and retrieved the address of that wealthwallet. Next, we will interaction with the wealthwallet we have just created.
 
 ## WealthWallet
+Wealthwallets are used to create and keep track of your portfolios.
+
 ```javascript
 //create wealthwallet instance
 const wealthWallet = await WealthWallet.at(wealthWalletAddress);
 
-//get total portfolios aka current portfolio index
+//get current portfolio index aka total portfolios
 const portfolioIndex = await wealthWallet.getTotalPortfolios(); //equals 0
 
 // define portfolio name
@@ -78,12 +87,24 @@ await wealthWallet.createPortfolio(portfolioName);
 const portfolioAddress = await wealthWallet.getPortfolio(portfolioIndex);
 ```
 
+First, we create an instance of the wealthwallet we just created.
+
+Next, we create a portfolio using `createPortfolio` method and giving it a name.
+
+Finally, we retrieve the address of that portfolio using `getPortfolio` method and giving it the portfolio index.
+0 = First portfolio
+1 = Second portfolio
+...
+
+You have just created a portfolio and retrieved at address of that portfolio using your wealthwallet! Next we will customize the portfolio.
+
 ## Portfolio
+Portfolios are where you choose the assets you want to invest in and their respective ratios. You can deposit, rebalance and withdraw from your portfolio at anytime.
 ```javascript
 //create portfolio instance
 const portfolio = await Portfolio.at(portfolioAddress);
 
-//set configurations settings
+//define configuration settings
 const slippage = 5000; //basis points out of 10,000 (0.5% slippage)
 const swapTimeLimit = 600; //time limit in seconds (10 minutes)
 const uniswapRouterAddress = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D";
@@ -115,7 +136,40 @@ for (let i=0; i<assets.length; i++){
 }
 ```
 
+First, we create an instance of the portfolio using the address we were given.
+
+Then, we configure the settings that we want the portfolio to be made of using the `configure()` method.
+### `configure(slippage, swapTimeLimit, uniswapRouterAddress, wethAddress)`
+`slippage`: This is amount a price can move between when a swap is submitted and when it is executed, this is measured in basis points out of 10,000, see [Uniswap's glossary](https://uniswap.org/docs/v2/protocol-overview/glossary/#slippage).  
+<br>
+`swapTimeLimit`: This is a swap's deadline, the maximum amount of time a swap has to execute a trade from when it's submitted.
+<br>
+<br>
+`uniswapRouterAddress`: Input Uniswap's Router address to be able to swap tokens on Uniswap. See [Uniswap's Router02](https://docs.uniswap.org/protocol/V2/reference/smart-contracts/router-02).
+<br>
+<br>
+`wethAddress`: This is wrapped ether's address. We input this address to buy wrapped ether directly, without having to use a market maker.
+<br>
+<br>
+
+Next, we add the assets we want to make up the portfolio using `addAsset()` method. 
+### `addAsset(name, symbol, address, ratio)`
+`name`: This is the name of the asset 
+<br>
+<br>
+`symbol`: This is the symbol of the asset
+<br>
+<br>
+`address`: This is the asset's token address
+<br>
+<br>
+`ratio`: This is the percentage you want the asset to make up of your portfolio. This is measured in basis points out of 10,000. Remember to make sure your assets always add up to 100% of your portfolio. 
+<br>
+<br>
+You have just configure your portfolio and added 2 assets. In this example, your portfolio is 50% WBTC and 50% WETH.
+
 ## Fund
+
 ```javascript
 console.log("BEFORE FUNDING\n");
 
