@@ -169,7 +169,7 @@ Next, we add the assets we want to make up the portfolio using `addAsset()` meth
 You have just configure your portfolio and added 2 assets. In this example, your portfolio is 50% WBTC and 50% WETH.
 
 ## Fund
-
+Whenever you fund your portfolio, wealthwallet will automatically distribute your funds to your chosen assets with their respective ratios.
 ```javascript
 console.log("BEFORE FUNDING\n");
 
@@ -211,6 +211,45 @@ for (let i=0; i<totalAssets; i++) {
     console.log("Amount: ", asset[4].toString());
 }
 ```
+### Console
+```
+BEFORE FUNDING
+
+--------------- Asset Details ----------------
+Name:  Wrapped BTC
+Symbol:  WBTC
+Address:  0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599
+Ratio:  5000
+Amount:  0
+--------------- Asset Details ----------------
+Name:  Wrapped Ether
+Symbol:  WETH
+Address:  0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
+Ratio:  5000
+Amount:  0
+
+
+AFTER FUNDING
+
+--------------- Asset Details ----------------
+Name:  Wrapped BTC
+Symbol:  WBTC
+Address:  0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599
+Ratio:  5000
+Amount:  3056095
+--------------- Asset Details ----------------
+Name:  Wrapped Ether
+Symbol:  WETH
+Address:  0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
+Ratio:  5000
+Amount:  500000000000000000
+```
+First, we get the total number of assets using the `getTotalAssets()` method, then loop through those assets and get their information using the `getAssetDetails()` method.
+
+Next, we fund the portfolio by calling the `deposit()` method and sending the amount of wei we want to deposit. You can also fund your portfolio by simply sending funds to the portfolio address.
+
+Finally, we loop through the assets again to see how they've change. As you can see, 50% of the funds sent was swapped for WBTC and the other 50% was swapped for WETH. 
+
 ## Rebalance
 ```javascript
 console.log("\n\nBEFORE REBALANCE\n");
