@@ -58,7 +58,7 @@ The WealthWalletFactory is used to create wealthwallets. It also keeps track of 
 
 ```javascript
 //define factory address
-const factoryAddress = "0x24b2e6065fD465501f4b52f13B8B0BcA544B22fC"; // mainnet address
+const factoryAddress = "0x6d439dBA58e8642746c155fe902B1833892F2504"; // mainnet address
 
 //create wealthwalletfactory instance
 const wealthWalletFactory = await WealthWalletFactory.at(factoryAddress);
