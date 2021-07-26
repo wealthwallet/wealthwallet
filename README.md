@@ -5,11 +5,12 @@ Wealthwallet is a smart contract built on Ethereum powered by Uniswap that allow
 
 <br>
 
-Wealthwallet smart contract is deployed on mainnet and ropsten.
+Wealthwallet smart contract is deployed on Mainnet, Ropsten and Kovan.
 |**Network** | **Address**
 |------------|------------
-|MainNet     | [](https://etherscan.io/address/)
-|Ropsten     | [0x24b2e6065fD465501f4b52f13B8B0BcA544B22fC](https://ropsten.etherscan.io/address/0x24b2e6065fD465501f4b52f13B8B0BcA544B22fC)
+|Mainnet     | [0x6d439dBA58e8642746c155fe902B1833892F2504](https://etherscan.io/address/0x6d439dBA58e8642746c155fe902B1833892F2504)
+|Ropsten     | [0x93732c84E51C89b23a4869cD94856DaE2141771E](https://ropsten.etherscan.io/address/0x93732c84E51C89b23a4869cD94856DaE2141771E)
+|Kovan       | [0x3E9d6C24726CFCA4864bCc6c193dD411485235AD](https://kovan.etherscan.io/address/0x3E9d6C24726CFCA4864bCc6c193dD411485235AD)
 
 ## Table of Contents
 1. [Features](#Features)
